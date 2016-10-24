@@ -18,21 +18,44 @@ function loadImage(url, options) {
     return image;
 }
 
-var A = 30;
-var F = 0.03;
-var S = 0.04;
-
-
-function render() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+function drawLayer(layer) {
     var width = canvas.width;
     var height = canvas.height;
+
+    var A = layer.A;
+    var F = layer.F;
+    var S = layer.S;
+    var pattern = layer.pattern;
     var patternHeight = pattern.height;
+
     for (var y = 0; y < height; y++) {
         var offset = A * Math.sin(F * y + S * t);
         // offset = (y % 2) ? offset : -offset;
         context.drawImage(pattern, Math.floor((offset + width) % width), y % patternHeight, width, 1, 0, y, width, 1);
     }
+}
+
+function render() {
+    var width = canvas.width;
+    var height = canvas.height;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawLayer({
+        pattern: pattern,
+        A: 30,
+        F: 0.03,
+        S: 0.04
+    });
+
+    context.globalAlpha=0.5;
+    drawLayer({
+        pattern: pattern,
+        A: 20,
+        F: 0.02,
+        S: 0.07
+    });
+    context.globalAlpha=1.0;
+
     context.drawImage(enemy, 0, 0, width, height, 0, 0, width, height);
 }
 
