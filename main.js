@@ -33,6 +33,7 @@ function render() {
         // offset = (y % 2) ? offset : -offset;
         context.drawImage(pattern, Math.floor((offset + width) % width), y % patternHeight, width, 1, 0, y, width, 1);
     }
+    context.drawImage(enemy, 0, 0, width, height, 0, 0, width, height);
 }
 
 function update() {
@@ -43,6 +44,7 @@ var t = 0;
 var canvas = document.getElementById('mainCanvas');
 var context = canvas.getContext('2d');
 var pattern = loadImage('./pattern.png');
+var enemy = loadImage('./enemy.png');
 var stats = new Stats();
 
 stats.setMode(0);
