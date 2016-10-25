@@ -18,7 +18,7 @@ function loadImage(url, options) {
     return image;
 }
 
-function drawLayer(layer) {
+function drawLayer(context, layer) {
     var width = canvas.width;
     var height = canvas.height;
 
@@ -39,25 +39,26 @@ function render() {
     var width = canvas.width;
     var height = canvas.height;
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    backBufferContext.clearRect(0, 0, canvas.width, canvas.height);
 
-    drawLayer({
+    drawLayer(backBufferContext, {
         pattern: pattern,
         A: 30,
         F: 0.03,
         S: 0.04
     });
 
-    context.globalAlpha=0.5;
-    drawLayer({
+    backBufferContext.globalAlpha=0.5;
+    drawLayer(backBufferContext, {
         pattern: pattern,
         A: 20,
         F: 0.02,
         S: 0.07
     });
-    context.globalAlpha=1.0;
+    backBufferContext.globalAlpha=1.0;
 
-    context.drawImage(enemy, 0, 0, width, height, 0, 0, width, height);
+    backBufferContext.drawImage(enemy, 0, 0, width, height, 0, 0, width, height);
+    context.drawImage(backBuffer, 0, 0, width, height, 0, 0, width, height);
 }
 
 function update() {
@@ -67,6 +68,10 @@ function update() {
 var t = 0;
 var canvas = document.getElementById('mainCanvas');
 var context = canvas.getContext('2d');
+var backBuffer = document.createElement("canvas");
+backBuffer.width = canvas.width;
+backBuffer.height = canvas.height;
+var backBufferContext = backBuffer.getContext("2d");
 var enemy = loadImage('./enemy.gif');
 var pattern = loadImage('./pattern.png');
 var stats = new Stats();
