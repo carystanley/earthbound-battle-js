@@ -83,11 +83,11 @@ stats.domElement.style.top = '0px';
 document.body.appendChild(stats.domElement);
 
 function mainloop(){
-    requestAnimFrame(mainloop);
     stats.begin();
     update();
     render();
     stats.end();
+    requestAnimFrame(mainloop);
 };
 
 mainloop();
