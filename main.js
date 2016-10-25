@@ -40,6 +40,7 @@ function render() {
     var height = canvas.height;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
+
     drawLayer({
         pattern: pattern,
         A: 30,
@@ -66,8 +67,8 @@ function update() {
 var t = 0;
 var canvas = document.getElementById('mainCanvas');
 var context = canvas.getContext('2d');
+var enemy = loadImage('./enemy.gif');
 var pattern = loadImage('./pattern.png');
-var enemy = loadImage('./enemy.png');
 var stats = new Stats();
 
 stats.setMode(0);
