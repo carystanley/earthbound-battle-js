@@ -45,7 +45,7 @@ function render() {
         F: 0.03,
         S: 0.04
     });
-/*
+
     backBufferContext.globalAlpha=0.5;
     drawLayer(backBufferContext, {
         pattern: pattern,
@@ -54,7 +54,7 @@ function render() {
         S: 0.07
     });
     backBufferContext.globalAlpha=1.0;
-*/
+
     backBufferContext.drawImage(enemy, 0, 0, width, height, 0, 0, width, height);
     context.drawImage(backBuffer, 0, 0, width, height, 0, 0, width, height);
 }
