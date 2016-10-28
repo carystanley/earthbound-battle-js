@@ -39,8 +39,6 @@ function render() {
     var width = canvas.width;
     var height = canvas.height;
 
-    backBufferContext.clearRect(0, 0, canvas.width, canvas.height);
-
     drawLayer(backBufferContext, {
         pattern: pattern,
         A: 30,
